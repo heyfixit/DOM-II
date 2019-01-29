@@ -12,6 +12,8 @@ window.onload = () => {
   const body = document.getElementsByTagName("body")[0];
   body.style.position = "relative";
   // const busImg = document.querySelector(".intro img");
+
+  // mousing over nav links triggers dropElement
   Array.from(document.querySelectorAll("nav > *")).forEach((el) => {
     el.addEventListener("mouseover", (e) => {
       e.preventDefault();
@@ -19,9 +21,26 @@ window.onload = () => {
     });
   });
 
+  // any keydown event randomizes body background
   body.addEventListener('keydown', () => {
     body.style.backgroundColor = randomRGB();
   });
+
+  // img events
+  Array.from(document.getElementsByTagName("img")).forEach(el => {
+    // wheel rotates images
+    el.addEventListener("wheel", () => {
+      el.style.transition = "all 0.5s";
+      setTimeout(() => el.style.transform = `rotate(${Math.floor(Math.random() * 1080)}deg)`);
+    });
+
+    // double click restores them to 0
+    el.addEventListener("dblclick", () => {
+      setTimeout(() => el.style.transform = "rotate(0deg)");
+    });
+  });
+
+
   // console.log(busImg);
   // busImg.style.position = "absolute"
 
