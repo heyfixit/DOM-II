@@ -17,6 +17,7 @@ window.onload = () => {
 
   // mousing over nav links triggers dropElement
   Array.from(document.querySelectorAll("nav > *")).forEach((el) => {
+    el.addEventListener("click", (e) => e.preventDefault());
     el.addEventListener("mouseover", (e) => {
       e.preventDefault();
       dropElement(e.currentTarget);
@@ -53,11 +54,58 @@ window.onload = () => {
 
   // mouseenter
   Array.from(document.getElementsByTagName("p")).forEach(p => {
-    p.addEventListener("mouseenter", () => p.style.fontWeight = "bold");
+    p.addEventListener("mouseenter", () => {
+      p.style.fontWeight = "bold"
+    });
   });
 
-  // console.log(busImg);
-  // busImg.style.position = "absolute"
+  // mouseleave
+  Array.from(document.getElementsByTagName("p")).forEach(p => {
+    p.addEventListener("mouseleave", () => {
+      p.style.fontWeight = "normal";
+    });
+  });
+
+  // click
+  document.getElementsByClassName("btn")[0].addEventListener("click", () => {
+    const time = Math.random() * 1000 + 500;
+    body.style.transition = `all ${time / 1000}s`;
+    setTimeout(() => body.style.transform = `scale(${Math.random() * 0.5})`);
+    setTimeout(() => body.style.transform = "scale(1)", time);
+
+  });
+
+  // drag and drop
+  // // set p elements to draggable
+  Array.from(document.getElementsByTagName("p")).forEach(p => {
+    p.setAttribute("draggable", true);
+  });
+
+  // IIFE, not sure if this makes sense
+  (function() {
+    let dragged;
+    document.addEventListener("drag", (e) => {
+      dragged = e.srcElement;
+      e.srcElement.style.backgroundColor = "red";
+    });
+
+    document.addEventListener("dragover", e => e.preventDefault());
+
+    //drop event
+    document.addEventListener("drop", (e) => {
+      console.log(e);
+      e.preventDefault();
+      if(dragged) {
+        dragged.style.backgroundColor = "";
+      }
+      e.target.style.backgroundColor = "blue";
+    });
+
+    // prevent propagation on first paragraph
+    document.querySelector("p").addEventListener("drag", (e) => {
+      e.stopPropagation();
+    });
+  })();
 
   function dropElement(element) {
     const newElement = element.cloneNode(true);
