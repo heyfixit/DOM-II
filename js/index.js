@@ -8,8 +8,10 @@ function randomRGB() {
   return `rgb(${vals.join(",")})`;
 }
 
+// load event listener
 window.onload = () => {
   const body = document.getElementsByTagName("body")[0];
+  const containers = document.querySelectorAll(".container");
   body.style.position = "relative";
   // const busImg = document.querySelector(".intro img");
 
@@ -40,6 +42,14 @@ window.onload = () => {
     });
   });
 
+  // resize event
+  window.addEventListener("resize", () => {
+    const interval = setInterval(() => {
+      containers.forEach(c => c.style.color = randomRGB());
+      // container.style.transform = `translateX(${Math.random() > 0.5 ? -10 : 10}px)`;
+    }, 100);
+    setTimeout(() => clearInterval(interval), 500);
+  });
 
   // console.log(busImg);
   // busImg.style.position = "absolute"
