@@ -47,7 +47,6 @@ window.onload = () => {
   window.addEventListener("resize", () => {
     const interval = setInterval(() => {
       containers.forEach(c => c.style.color = randomRGB());
-      // container.style.transform = `translateX(${Math.random() > 0.5 ? -10 : 10}px)`;
     }, 100);
     setTimeout(() => clearInterval(interval), 500);
   });
@@ -76,7 +75,7 @@ window.onload = () => {
   });
 
   // drag and drop
-  // // set p elements to draggable
+  // set p elements to draggable
   Array.from(document.getElementsByTagName("p")).forEach(p => {
     p.setAttribute("draggable", true);
   });
@@ -111,7 +110,6 @@ window.onload = () => {
     const newElement = element.cloneNode(true);
     const rect = element.getBoundingClientRect();
     body.appendChild(newElement);
-    // newElement.classList = element.classList;
     newElement.style.position = "absolute";
     newElement.style.zIndex = 999;
     newElement.style.fontSize = "1.6rem";
