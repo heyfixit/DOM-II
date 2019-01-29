@@ -51,6 +51,11 @@ window.onload = () => {
     setTimeout(() => clearInterval(interval), 500);
   });
 
+  // mouseenter
+  Array.from(document.getElementsByTagName("p")).forEach(p => {
+    p.addEventListener("mouseenter", () => p.style.fontWeight = "bold");
+  });
+
   // console.log(busImg);
   // busImg.style.position = "absolute"
 
