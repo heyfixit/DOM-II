@@ -16,7 +16,7 @@ window.onload = () => {
   // const busImg = document.querySelector(".intro img");
 
   // mousing over nav links triggers dropElement
-  Array.from(document.querySelectorAll("nav > *")).forEach((el) => {
+  document.querySelectorAll("nav > *").forEach((el) => {
     el.addEventListener("click", (e) => e.preventDefault());
     el.addEventListener("mouseover", (e) => {
       e.preventDefault();
